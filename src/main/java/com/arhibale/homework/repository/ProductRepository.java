@@ -33,10 +33,10 @@ public class ProductRepository {
     }
 
     public void save(Product product) {
-        log.info("info: {} {} {}", product.getId(), product.getTitle(), product.getCost());
         if (product.getId() == null) {
             product.setId(productDb.size() + 1L);
         }
+        log.info("product info: {} {} {}", product.getId(), product.getTitle(), product.getCost());
         productDb.put(product.getId(), product);
     }
 }
