@@ -22,7 +22,7 @@ public class ProductDeserializer extends StdDeserializer<Product> {
         try {
             JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
 
-            long id = jsonNode.get("id").longValue();
+            long id = jsonNode.get("id").asLong();
             String title = jsonNode.get("product code").asText().split("-")[0].trim();
             String company = jsonNode.get("product code").asText().split("-")[1].trim();
             int cost = jsonNode.get("cost").asInt();
