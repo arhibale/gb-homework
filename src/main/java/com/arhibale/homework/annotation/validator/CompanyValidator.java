@@ -13,6 +13,11 @@ public class CompanyValidator implements ConstraintValidator<Company, String> {
     private CompanyRepository companyRepository;
 
     @Override
+    public void initialize(Company constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
     public boolean isValid(String str, ConstraintValidatorContext ctx) {
         return companyRepository.findAll().contains(str);
     }
