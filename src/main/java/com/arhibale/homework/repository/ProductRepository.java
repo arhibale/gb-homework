@@ -38,10 +38,14 @@ public class ProductRepository {
 
     public void deleteById(Long id) {
         try(Session session = sessionFactory.getCurrentSession()) {
-            session.beginTransaction();
-            Product product = session.get(Product.class, id);
-            session.remove(product);
-            session.getTransaction().commit();
+            try {
+                session.beginTransaction();
+                Product product = session.get(Product.class, id);
+                session.remove(product);
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+            }
         }
     }
 
