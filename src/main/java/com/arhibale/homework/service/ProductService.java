@@ -4,7 +4,6 @@ import com.arhibale.homework.model.Product;
 import com.arhibale.homework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public void save(Product product) {
-        productRepository.save(product);
+    public void saveOrUpdate(Product product) {
+        productRepository.saveOrUpdate(product);
     }
 }

@@ -35,8 +35,8 @@ public class ProductController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute @Valid Product product) {
-        productService.save(product);
+    public String saveOrUpdate(@ModelAttribute @Valid Product product) {
+        productService.saveOrUpdate(product);
         return "redirect:/product";
     }
 }

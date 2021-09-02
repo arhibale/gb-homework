@@ -21,6 +21,10 @@
 
 <form action="#" th:action="@{/product}" method="post" th:object="${product}">
     <div class="mb-3">
+        <label class="form-label">Id</label>
+        <input type="text" class="form-control" id="id_product" name="id_product"/>
+    </div>
+    <div class="mb-3">
         <label class="form-label">Title</label>
         <input type="text" class="form-control" id="title" name="title"/>
     </div>

@@ -27,6 +27,7 @@ public class ProductRepository {
 
     public Product findById(Long id) {
         try(Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
             Product product = session.createNamedQuery("Product.findById", Product.class)
                     .setParameter("id", id)
                     .getSingleResult();
@@ -44,10 +45,17 @@ public class ProductRepository {
         }
     }
 
-    public void save(Product product) {
+    public void saveOrUpdate(Product product) {
         try(Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            session.save(product);
+            if (product.getId_product() == null) {
+                session.save(product);
+            } else {
+                Product productDb = session.get(Product.class, product.getId_product());
+                productDb.setTitle(product.getTitle());
+                productDb.setCost(product.getCost());
+                session.update(productDb);
+            }
             session.getTransaction().commit();
         }
     }

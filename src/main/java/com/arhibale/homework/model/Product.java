@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor
@@ -21,9 +22,15 @@ public class Product {
     @Column(name = "id_product")
     private Long id_product;
 
+    @NotBlank
     @Column(name = "title")
     private String title;
 
     @Column(name = "cost")
     private Integer cost;
+
+    public Product(String title, Integer cost) {
+        this.title = title;
+        this.cost = cost;
+    }
 }
