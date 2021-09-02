@@ -1,22 +1,29 @@
 package com.arhibale.homework.model;
 
-import com.arhibale.homework.annotation.Company;
-import com.arhibale.homework.utill.deserializer.ProductDeserializer;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@JsonDeserialize(using = ProductDeserializer.class)
+@Entity
+@Table(name = "products")
+@NamedQueries({
+        @NamedQuery(name = "Product.findAll", query = "select a from Product a"),
+        @NamedQuery(name = "Product.findById", query = "select a from Product a where a.id_product = :id")
+})
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_product")
+    private Long id_product;
 
-    private Long id;
-
+    @Column(name = "title")
     private String title;
 
-    @Company
-    private String company;
-
+    @Column(name = "cost")
     private Integer cost;
 }

@@ -25,10 +25,6 @@
         <input type="text" class="form-control" id="title" name="title"/>
     </div>
     <div class="mb-3">
-        <label class="form-label">Company</label>
-        <input type="text" class="form-control" id="company" name="company"/>
-    </div>
-    <div class="mb-3">
         <label class="form-label">Cost</label>
         <input type="text" class="form-control" id="cost" name="cost"/>
     </div>
@@ -43,13 +39,11 @@
         <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>Company</th>
             <th>Cost</th>
         </tr>
         <tr th:each="product : ${products}">
-            <td th:text="${product.id}">...</td>
+            <td th:text="${product.id_product}">...</td>
             <td th:text="${product.title}">...</td>
-            <th th:text="${product.company}">...</th>
             <td th:text="${product.cost}">...</td>
         </tr>
     </table>

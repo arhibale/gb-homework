@@ -1,9 +1,10 @@
 package com.arhibale.homework.service;
 
 import com.arhibale.homework.model.Product;
-import com.arhibale.homework.repository.MapRepository;
+import com.arhibale.homework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final MapRepository<Product> productRepository;
+    private final ProductRepository productRepository;
 
     public List<Product> findAll() {
         return productRepository.findAll();
