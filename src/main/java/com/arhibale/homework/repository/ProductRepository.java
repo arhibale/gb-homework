@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class ProductRepository {
 
-    SessionFactory sessionFactory = new Configuration()
+    private final SessionFactory sessionFactory = new Configuration()
             .configure("configs/hibernate.cfg.xml")
             .addAnnotatedClass(Product.class)
             .buildSessionFactory();
@@ -47,16 +47,24 @@ public class ProductRepository {
 
     public void saveOrUpdate(Product product) {
         try(Session session = sessionFactory.getCurrentSession()) {
-            session.beginTransaction();
-            if (product.getId_product() == null) {
-                session.save(product);
-            } else {
-                Product productDb = session.get(Product.class, product.getId_product());
-                productDb.setTitle(product.getTitle());
-                productDb.setCost(product.getCost());
-                session.update(productDb);
+            try {
+                session.beginTransaction();
+                if (product.getId_product() == null) {
+                    session.save(product);
+                } else {
+                    Product productDb = session.get(Product.class, product.getId_product());
+                    productDb.setTitle(product.getTitle());
+                    productDb.setCost(product.getCost());
+                    session.update(productDb);
+                }
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                session.getTransaction().rollback();
             }
-            session.getTransaction().commit();
         }
+    }
+
+    public void shutdown() {
+        sessionFactory.close();
     }
 }
