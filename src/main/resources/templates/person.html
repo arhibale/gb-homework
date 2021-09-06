@@ -25,18 +25,14 @@
     </div>
 </div>
 
-<form action="#" th:action="@{/product}" method="post" th:object="${product}">
+<form action="#" th:action="@{/person}" method="post" th:object="${person}">
     <div class="mb-3">
         <label class="form-label">Id</label>
         <input type="text" class="form-control" id="id" name="id"/>
     </div>
     <div class="mb-3">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-control" id="title" name="title"/>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Cost</label>
-        <input type="text" class="form-control" id="cost" name="cost"/>
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name"/>
     </div>
     <div class="mb-3">
         <button type="submit" class="btn-primary">Add</button>
@@ -44,17 +40,15 @@
 </form>
 
 <div>
-    <h1>List of products</h1>
+    <h1>List of person</h1>
     <table class="table">
         <tr>
             <th>ID</th>
-            <th>Title</th>
-            <th>Cost</th>
+            <th>Name</th>
         </tr>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.id}">...</td>
-            <td th:text="${product.title}">...</td>
-            <td th:text="${product.cost}">...</td>
+        <tr th:each="person : ${persons}">
+            <td th:text="${person.id}">...</td>
+            <td th:text="${person.name}">...</td>
         </tr>
     </table>
 </div>

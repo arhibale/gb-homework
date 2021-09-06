@@ -1,8 +1,9 @@
 package com.arhibale.homework.controller;
 
 import com.arhibale.homework.model.Product;
-import com.arhibale.homework.service.ProductService;
+import com.arhibale.homework.service.ProductDaoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,29 +15,34 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    private ProductDaoService productDaoService;
+
+    @Autowired
+    public ProductController(ProductDaoService productDaoService) {
+        this.productDaoService = productDaoService;
+    }
 
     @GetMapping
-    public String findAll(Model model) {
-        model.addAttribute("products", productService.findAll());
+    public String getAll(Model model) {
+        model.addAttribute("products", productDaoService.getAll());
         return "product";
     }
 
-    @GetMapping("/{id}")
-    public String findById(@PathVariable Long id, Model model) {
-        model.addAttribute("products", productService.findById(id));
+    @GetMapping("/get/{id}")
+    public String getById(@PathVariable Long id, Model model) {
+        model.addAttribute("products", productDaoService.getById(id));
         return "product";
     }
 
-    @GetMapping("/delete{id}")
+    @GetMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
-        productService.deleteById(id);
+        productDaoService.deleteById(id);
         return "redirect:/product";
     }
 
     @PostMapping
-    public String saveOrUpdate(@ModelAttribute @Valid Product product) {
-        productService.saveOrUpdate(product);
+    public String save(@ModelAttribute @Valid Product product) {
+        productDaoService.save(product);
         return "redirect:/product";
     }
 }

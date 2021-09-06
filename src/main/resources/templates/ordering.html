@@ -25,18 +25,15 @@
     </div>
 </div>
 
-<form action="#" th:action="@{/product}" method="post" th:object="${product}">
+
+<form action="#" th:action="@{/ordering}" method="post" th:object="${ordering}">
     <div class="mb-3">
-        <label class="form-label">Id</label>
-        <input type="text" class="form-control" id="id" name="id"/>
+        <label class="form-label">Id person</label>
+        <input type="text" class="form-control" id="person_id" name="person_id"/>
     </div>
     <div class="mb-3">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-control" id="title" name="title"/>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Cost</label>
-        <input type="text" class="form-control" id="cost" name="cost"/>
+        <label class="form-label">Id product</label>
+        <input type="text" class="form-control" id="product_id" name="product_id"/>
     </div>
     <div class="mb-3">
         <button type="submit" class="btn-primary">Add</button>
@@ -44,17 +41,21 @@
 </form>
 
 <div>
-    <h1>List of products</h1>
+    <h1>List of ordering</h1>
     <table class="table">
         <tr>
             <th>ID</th>
-            <th>Title</th>
+            <th>Person id</th>
+            <th>Product id</th>
             <th>Cost</th>
+            <th>Date</th>
         </tr>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.id}">...</td>
-            <td th:text="${product.title}">...</td>
-            <td th:text="${product.cost}">...</td>
+        <tr th:each="ordering : ${orderings}">
+            <td th:text="${ordering.id}">...</td>
+            <td th:text="${ordering.person_id}">...</td>
+            <td th:text="${ordering.product_id}">...</td>
+            <td th:text="${ordering.cost}">...</td>
+            <td th:text="${ordering.date}">...</td>
         </tr>
     </table>
 </div>

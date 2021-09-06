@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,20 +14,27 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "products")
 @NamedQueries({
         @NamedQuery(name = "Product.findAll", query = "select a from Product a"),
-        @NamedQuery(name = "Product.findById", query = "select a from Product a where a.id_product = :id")
+        @NamedQuery(name = "Product.findById", query = "select a from Product a where a.id = :id")
 })
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_product")
-    private Long id_product;
+    @Column(name = "id")
+    private Long id;
 
-    @NotBlank
     @Column(name = "title")
     private String title;
 
     @Column(name = "cost")
     private Integer cost;
+
+    @ManyToMany
+    @JoinTable(
+            name = "ordering",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id")
+    )
+    private List<Person> personList;
 
     public Product(String title, Integer cost) {
         this.title = title;
