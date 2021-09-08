@@ -3,7 +3,6 @@ package com.arhibale.homework.controller;
 import com.arhibale.homework.model.Person;
 import com.arhibale.homework.service.PersonDaoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +14,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class PersonController {
 
-    private PersonDaoService personDaoService;
-
-    @Autowired
-    public PersonController(PersonDaoService personDaoService) {
-        this.personDaoService = personDaoService;
-    }
+    private final PersonDaoService personDaoService;
 
     @GetMapping
     public String getAll(Model model) {

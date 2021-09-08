@@ -1,11 +1,8 @@
 package com.arhibale.homework.controller;
 
 import com.arhibale.homework.model.Ordering;
-import com.arhibale.homework.model.Person;
 import com.arhibale.homework.service.OrderingDaoService;
-import com.arhibale.homework.service.PersonDaoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +14,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class OrderingController {
 
-    private OrderingDaoService orderingDaoService;
-
-    @Autowired
-    public OrderingController(OrderingDaoService orderingDaoService) {
-        this.orderingDaoService = orderingDaoService;
-    }
+    private final OrderingDaoService orderingDaoService;
 
     @GetMapping
     public String getAll(Model model) {

@@ -2,20 +2,18 @@ package com.arhibale.homework.service;
 
 import com.arhibale.homework.model.Ordering;
 import com.arhibale.homework.repository.dao.DaoSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderingDaoService {
 
-    @Autowired
-    private DaoSessionFactory factory;
-
-    @Autowired
-    private ProductDaoService productDaoService;
+    private final DaoSessionFactory factory;
+    private final ProductDaoService productDaoService;
 
     public List<Ordering> getAll() {
         return factory.getAll("Ordering.findAll", Ordering.class);

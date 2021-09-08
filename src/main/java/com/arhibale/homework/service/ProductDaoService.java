@@ -2,16 +2,16 @@ package com.arhibale.homework.service;
 
 import com.arhibale.homework.model.Product;
 import com.arhibale.homework.repository.dao.DaoSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductDaoService {
 
-    @Autowired
-    private DaoSessionFactory service;
+    private final DaoSessionFactory service;
 
     public List<Product> getAll() {
         return service.getAll("Product.findAll", Product.class);

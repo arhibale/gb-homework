@@ -3,7 +3,6 @@ package com.arhibale.homework.controller;
 import com.arhibale.homework.model.Product;
 import com.arhibale.homework.service.ProductDaoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +14,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private ProductDaoService productDaoService;
-
-    @Autowired
-    public ProductController(ProductDaoService productDaoService) {
-        this.productDaoService = productDaoService;
-    }
+    private final ProductDaoService productDaoService;
 
     @GetMapping
     public String getAll(Model model) {
