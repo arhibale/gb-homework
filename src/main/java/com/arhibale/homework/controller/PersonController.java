@@ -24,6 +24,11 @@ public class PersonController {
         return personService.getById(id);
     }
 
+    @GetMapping("/name")
+    public Person getByName(@RequestParam String name) {
+        return personService.getByName(name);
+    }
+
     @DeleteMapping("/{id}")
     public Long deleteById(@PathVariable Long id) {
         return personService.deleteById(id);

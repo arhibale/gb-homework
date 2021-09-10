@@ -24,6 +24,11 @@ public class ProductController {
         return productService.getById(id);
     }
 
+    @GetMapping("/title")
+    public Product getByName(@RequestParam String title) {
+        return productService.getByName(title);
+    }
+
     @DeleteMapping("/{id}")
     public Long deleteBuId(@PathVariable Long id) {
         return productService.deleteById(id);

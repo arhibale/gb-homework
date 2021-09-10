@@ -1,7 +1,6 @@
 package com.arhibale.homework.service;
 
 import com.arhibale.homework.model.Person;
-import com.arhibale.homework.model.Product;
 import com.arhibale.homework.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +19,10 @@ public class PersonService {
 
     public Person getById(Long id) {
         return personRepository.findById(id).get();
+    }
+
+    public Person getByName(String name) {
+        return personRepository.findByName(name);
     }
 
     public Long deleteById(Long id) {
