@@ -1,7 +1,6 @@
 package com.arhibale.homework.controller;
 
 import com.arhibale.homework.model.Order;
-import com.arhibale.homework.model.Person;
 import com.arhibale.homework.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

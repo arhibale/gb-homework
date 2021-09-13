@@ -1,7 +1,6 @@
 package com.arhibale.homework.service;
 
 import com.arhibale.homework.model.Order;
-import com.arhibale.homework.model.Person;
 import com.arhibale.homework.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
