@@ -6,7 +6,18 @@ insert into products (title, cost) values
 ('Red Apple', 30),
 ('Fly Pineapple', 50),
 ('Cherry', 20),
-('Cyber Lemon', 60);
+('Cyber Lemon', 60),
+('Garlic', 65),
+('Leeks', 120),
+('Cucumber', 35),
+('Carrot', 80),
+('Beans', 10),
+('Pumpkin', 65),
+('Peas', 90),
+('Potato', 40),
+('Onion', 150),
+('Peach', 50),
+('Apricot', 75);
 
 drop table if exists persons cascade;
 create table persons (id bigserial primary key, name varchar(32));

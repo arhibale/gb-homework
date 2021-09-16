@@ -15,8 +15,9 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> findAll() {
-        return productService.findAll();
+    public List<Product> findAll(@RequestParam(name = "page", defaultValue = "0") Integer page,
+                                 @RequestParam(name = "size",defaultValue = "4") Integer size) {
+        return productService.findAll(page, size);
     }
 
     @GetMapping("/{id}")

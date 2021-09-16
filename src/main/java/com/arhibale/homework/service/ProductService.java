@@ -3,6 +3,7 @@ package com.arhibale.homework.service;
 import com.arhibale.homework.model.Product;
 import com.arhibale.homework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +14,10 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public List<Product> findAll() {
-        return productRepository.findAll().stream()
-                .map(Product::toModel).toList();
+    public List<Product> findAll(int page, int size) {
+        return productRepository.findAll(PageRequest.of(page, size)).stream()
+                .map(Product::toModel)
+                .toList();
     }
 
     public Product findById(Long id) {
