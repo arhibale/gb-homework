@@ -6,7 +6,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
 
 
     $scope.fillTable = function () {
-        $http.get(contextPath + '/product/?page=' + page + '&size=' + size)
+        $http.get(contextPath + '/api/v1/product/?page=' + page + '&size=' + size)
             .then(function (resp) {
                 $scope.products = resp.data
             });
