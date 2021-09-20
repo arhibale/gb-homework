@@ -1,5 +1,6 @@
 package com.arhibale.homework.service;
 
+import com.arhibale.homework.exception.PageNotFoundException;
 import com.arhibale.homework.exception.ProductNotFoundException;
 import com.arhibale.homework.model.Product;
 import com.arhibale.homework.repository.ProductRepository;
@@ -8,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +17,9 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<Product> findAll(int page, int size) {
+        if (page < 0) {
+            throw new PageNotFoundException();
+        }
         return productRepository.findAll(PageRequest.of(page, size)).stream()
                 .map(Product::toModel)
                 .toList();
