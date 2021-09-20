@@ -1,5 +1,6 @@
 package com.arhibale.homework.service;
 
+import com.arhibale.homework.exception.ProductNotFoundException;
 import com.arhibale.homework.model.Product;
 import com.arhibale.homework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +23,9 @@ public class ProductService {
     }
 
     public Product findById(Long id) {
-        return Product.toModel(productRepository.findById(id).get());
+        return productRepository.findById(id)
+                .map(Product::toModel)
+                .orElseThrow(ProductNotFoundException::new);
     }
 
     public void save(Product product) {

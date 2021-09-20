@@ -1,5 +1,6 @@
 package com.arhibale.homework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class ProductEntity {
     @Column(name = "cost")
     private Integer cost;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<OrderEntity> orders;
 }
