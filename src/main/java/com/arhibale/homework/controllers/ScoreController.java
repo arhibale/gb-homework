@@ -16,6 +16,16 @@ public class ScoreController {
 
     private final ScoreService service;
 
+    @GetMapping("/inc")
+    public String increment(Principal principal) {
+        return service.increment(principal.getName());
+    }
+
+    @GetMapping("/dec")
+    public String decrement(Principal principal) {
+        return service.decrement(principal.getName());
+    }
+
     @GetMapping("/get/current")
     public Integer current(Principal principal) {
         return service.current(principal.getName());
